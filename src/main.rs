@@ -6,7 +6,7 @@ use structopt::StructOpt;
 #[derive(StructOpt)]
     #[doc="Print each line of text with placeholder character,\
     up to the maximum length of a line of text."]
-//
+
 struct Opts {
     #[structopt(parse(from_os_str))]
     infile: Option<PathBuf>,
@@ -43,7 +43,7 @@ fn main() {
 
         let max_line: usize = match buff.lines().map(|line| line.chars().count()).max() {
             Some(value) => value,
-            None => panic!("Open file is emty"),
+            None => return (),
         };
 
         for current_line in buff.lines() {
@@ -64,8 +64,6 @@ fn main() {
             create_flag_fill.push(opts.char_fill);
         }
 
-//        println!("{}{create_flag_fill}{}", opts.str_start_fill, opts.str_end_fill);
-//        
         std::io::stdout()
             .write(format!("{}{create_flag_fill}{}\n", opts.str_start_fill, opts.str_end_fill)
             .as_bytes()).expect("Write to stdout error");
