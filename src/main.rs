@@ -1,6 +1,7 @@
 use std::fs;
 use std::io::{stdin, Read, Write};
 use std::path::PathBuf;
+use std::error::Error;
 use structopt::StructOpt;
 
 #[derive(StructOpt)]
@@ -31,19 +32,19 @@ struct Opts {
     create: bool,
 }
 
-fn main() {
+fn main() -> Result<(), Box<dyn Error>> {
     let opts = Opts::from_args();
     let mut buff = String::new();
 
-    if opts.create == false {
+    if !opts.create {
         match opts.infile {
-            Some(path) => {buff = fs::read_to_string(path).expect("Open file error")}
-            None => {stdin().read_to_string(&mut buff).expect("Read stdin error");}
+            Some(path) => {buff = fs::read_to_string(path)?}
+            None => {stdin().read_to_string(&mut buff)?;}
         }
 
         let max_line: usize = match buff.lines().map(|line| line.chars().count()).max() {
             Some(value) => value,
-            None => return (),
+            None => return Ok(()),
         };
 
         for current_line in buff.lines() {
@@ -54,8 +55,8 @@ fn main() {
             }
 
             std::io::stdout()
-                .write(format!("{}{current_line}{current_fill}{}\n", opts.str_start_fill, opts.str_end_fill)
-                .as_bytes()).expect("Write to stdout error");
+                .write_all(format!("{}{current_line}{current_fill}{}\n", opts.str_start_fill, opts.str_end_fill)
+                .as_bytes())?;
         } 
     } else {
         let mut create_flag_fill = String::new();
@@ -65,7 +66,8 @@ fn main() {
         }
 
         std::io::stdout()
-            .write(format!("{}{create_flag_fill}{}\n", opts.str_start_fill, opts.str_end_fill)
-            .as_bytes()).expect("Write to stdout error");
+            .write_all(format!("{}{create_flag_fill}{}\n", opts.str_start_fill, opts.str_end_fill)
+            .as_bytes())?;
     }
+    Ok(())
 }
