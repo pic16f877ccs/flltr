@@ -3,6 +3,7 @@ use std::io::{stdin, Read, Write};
 use std::path::PathBuf;
 use std::error::Error;
 use structopt::StructOpt;
+use colored::Colorize;
 
 #[derive(StructOpt)]
     #[doc="Print each line of text with placeholder character,\
@@ -30,11 +31,15 @@ struct Opts {
 
     #[structopt(short = "c", long = "create")]
     create: bool,
+
+    #[structopt(name = "color=STRING", short = "C", long = "color", default_value = "red")]
+    color: String,
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
     let opts = Opts::from_args();
     let mut buff = String::new();
+    //let color = opts.color;
 
     if !opts.create {
         match opts.infile {
@@ -55,7 +60,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             }
 
             std::io::stdout()
-                .write_all(format!("{}{current_line}{current_fill}{}\n", opts.str_start_fill, opts.str_end_fill)
+                .write_all(format!("{}{current_line}{current_fill}{}\n", opts.str_start_fill.color(&*opts.color), opts.str_end_fill.color(&*opts.color))
                 .as_bytes())?;
         } 
     } else {
@@ -66,7 +71,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         }
 
         std::io::stdout()
-            .write_all(format!("{}{create_flag_fill}{}\n", opts.str_start_fill, opts.str_end_fill)
+            .write_all(format!("{}{}{}\n", opts.str_start_fill.color(&*opts.color), create_flag_fill.color(&*opts.color), opts.str_end_fill.color(&*opts.color))
             .as_bytes())?;
     }
     Ok(())
