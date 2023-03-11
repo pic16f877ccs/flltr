@@ -9,6 +9,7 @@ Formats text by longest line, by inserting characters at the end of the string. 
 ```console
 paste <(ls | flltr) <(ls -1)
 ```
+![Command paste output.](/images/PasteOutput.png "The command flltr output.")
 
 The ls command
 ```console
