@@ -32,7 +32,7 @@ struct Opts {
     #[structopt(short = "c", long = "create")]
     create: bool,
 
-    #[structopt(name = "color=STRING", short = "C", long = "color", default_value = "red")]
+    #[structopt(name = "color=STRING", short = "C", long = "color", default_value = "black")]
     color: String,
 }
 
