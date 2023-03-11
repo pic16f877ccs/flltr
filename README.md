@@ -9,7 +9,10 @@ Formats text by longest line, by inserting characters at the end of the string. 
 
 $ paste <(flltr file) <(flltr file)
 
-$ flltr -s' ┌' -c -n'22' -f'─' -e'┐'; flltr -s' │ ' -e' │' <(head -n7 <(LC_ALL="en_US.UTF-8" cal)); flltr -s' └' -c -n'22' -f'─' -e'┘'
+The ls command
+```console
+C='red'; c=$(ls); n=$(($(wc -L <<<$c)+2)); flltr -s' ┌' -c -n$n -f'─' -e'┐' -C$C; flltr -s' │ ' -e' │' <<<$c -C$C; flltr -s' └' -c -n$n -f'─' -e'┘' -C$C
+```
 
 ## License
 GNU General Public License v3.0
