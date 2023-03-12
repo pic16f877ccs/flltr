@@ -32,6 +32,7 @@ struct Opts {
     #[structopt(short = "c", long = "create")]
     create: bool,
 
+    ///      use color STRING for start, fill, end arguments                      
     #[structopt(name = "color=STRING", short = "C", long = "color", default_value = "black")]
     color: String,
 }
