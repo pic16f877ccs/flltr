@@ -5,12 +5,18 @@ A small text formatting tool.
 ## Description
 
 Formats text by longest line, by inserting characters at the end of the string. You can insert characters at the beginning or end of the text.
-#### Installation
+### Installation
+
+Build and install with Rust package manager.
 ```console
 cargo install flltr
-
 ```
-#### Usage:
+Installing the [binary](https://github.com/pic16f877ccs/flltr/releases/download/v0.2.1/flltr-0.2.1-x86_64.pkg.tar.zst) using the Arch package manager.
+```console
+sudo pacman -U flltr-0.2.1x86_64.pkg.tar.zst
+```
+
+### Usage:
 ```console
 paste <(ls | flltr) <(ls -1)
 ```
