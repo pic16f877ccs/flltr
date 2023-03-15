@@ -3,8 +3,13 @@
 A small text formatting tool.
 
 ## Description
-Formats text by longest line, by inserting characters at the end of the string. You can insert characters at the beginning or end of the text.
 
+Formats text by longest line, by inserting characters at the end of the string. You can insert characters at the beginning or end of the text.
+#### Installation
+```console
+cargo install flltr
+
+```
 #### Usage:
 ```console
 paste <(ls | flltr) <(ls -1)
