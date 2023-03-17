@@ -11,9 +11,14 @@ Build and install with Rust package manager.
 ```console
 cargo install flltr
 ```
-Installing the [binary](https://github.com/pic16f877ccs/flltr/releases/download/v0.2.1/flltr-0.2.1-x86_64.pkg.tar.zst) using the Arch package manager.
+Installing the [package](https://github.com/pic16f877ccs/flltr/releases/download/v0.2.1/flltr-0.2.1-x86_64.pkg.tar.zst) using the Arch package manager.
 ```console
-sudo pacman -U flltr-0.2.1x86_64.pkg.tar.zst
+sudo pacman -U ./flltr-0.2.1x86_64.pkg.tar.zst
+```
+
+Installing the [package](https://github.com/pic16f877ccs/flltr/releases/download/v0.2.1/flltr_0.2.1_amd64.deb) using the Ubuntu package manager.
+```console
+sudo apt install ./flltr_0.2.1_amd64.deb
 ```
 
 ### Usage:
